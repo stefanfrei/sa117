@@ -1,7 +1,3 @@
-fn main() {
-    println!("Hello, world!");
-}
-
 fn add(a: u8, b: u8) -> u8 {
     a + b
 }
@@ -18,6 +14,30 @@ fn multiply(a: u8, b: u8) -> u8 {
 
 fn divide(a: u8, b: u8) -> u8 {
     a / b
+}
+
+struct Cube {
+    side: f64
+}
+
+impl Cube {
+    fn vol(&self) -> f64 {
+        self.side * self.side * self.side
+    }
+}
+
+struct Sphere {
+    dia: f64
+}
+
+impl Sphere {
+    fn vol(&self) -> f64 {
+        self.dia * self.dia * std::f64::consts::PI
+    }
+}
+
+fn main() {
+
 }
 
 #[cfg(test)]
@@ -49,5 +69,17 @@ mod tests {
         assert_eq!(divide(120, 30), 4);
         assert_eq!(divide(120, 3), 40);
         assert_eq!(divide(121, 3), 40);
+    }
+
+    #[test]
+    fn test_cube_vol() {
+        assert_eq!(Cube{side: 33.2}.vol(), 36594.36800000001);
+        assert_eq!(Cube{side: 10.0}.vol(), 1000.0);
+    }
+
+    #[test]
+    fn test_sphere_vol() {
+        assert_eq!(Sphere{dia: 33.2}.vol(), 3462.7890864928145);
+        assert_eq!(Sphere{dia: 10.0}.vol(), 314.1592653589793);
     }
 }
